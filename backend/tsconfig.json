@@ -1,0 +1,28 @@
+{
+  // Visit https://aka.ms/tsconfig to read more about this file
+  "compilerOptions": {
+    "target": "es2022",
+
+    "module": "ESNext",
+    "moduleResolution": "bundler",
+
+    "rootDir": "./src",
+    "outDir": "./dist",
+
+    "paths": {
+      "@/*": ["./src/*"]
+    },
+
+    "types": ["node"],
+
+    // Recommended Options
+    "strict": true,
+    "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true,
+    "skipLibCheck": true
+  },
+
+  "include": ["src/**/*.ts", "src/**/*.d.ts"],
+
+  "exclude": ["node_modules", "dist"]
+}
