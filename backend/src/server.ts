@@ -1,6 +1,7 @@
 import express from "express";
 import cors from "cors";
 import helmet from "helmet";
+import morgan from "morgan";
 import config from "@/config/config";
 import { prisma } from "@/config/prisma";
 import { Server } from "node:http";
@@ -14,6 +15,8 @@ const app = express();
 app.set("trust proxy", 1);
 
 app.use(helmet());
+
+app.use(morgan("dev"));
 
 app.use(
   cors({
