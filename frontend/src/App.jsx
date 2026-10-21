@@ -6,6 +6,7 @@ import ProtectedRoute from "./components/ui/ProtectedRoute";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
 import Dashboard from "./pages/Dashboard";
+import Teams from "./pages/Teams";
 
 export default function App() {
   return (
@@ -19,6 +20,7 @@ export default function App() {
 
           <Route element={<ProtectedRoute />}>
             <Route path="/dashboard" element={<Dashboard />} />
+            <Route path="/teams" element={<Teams />} />
           </Route>
 
           <Route path="*" element={<Navigate to="/" replace />} />
