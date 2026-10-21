@@ -9,6 +9,8 @@ import session from "express-session";
 import connectPgSimple from "connect-pg-simple";
 import passport from "./modules/auth/passport";
 import authRoutes from "./modules/auth/auth.routes";
+import teamRoutes from "./modules/teams/team.routes";
+import taskRoutes from "./modules/tasks/task.routes";
 
 const app = express();
 
@@ -53,14 +55,8 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 app.use("/api/auth", authRoutes);
-
-app.get("/api/health", (_req, res) => {
-  res.status(200).json({
-    success: true,
-    message: "Team Task Manager API is running",
-    environment: config.NODE_ENV,
-  });
-});
+app.use("/api/teams", teamRoutes);
+app.use("/api/tasks", taskRoutes);
 
 let server: Server;
 
