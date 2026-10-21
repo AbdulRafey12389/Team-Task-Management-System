@@ -1,6 +1,7 @@
 import { useCallback, useEffect, useState, type FormEvent } from "react";
 import axios from "axios";
 import { Plus, Users, ClipboardList, RefreshCw } from "lucide-react";
+import { Link } from "react-router-dom";
 
 import { createTeam, getTeams } from "../api/team.api";
 import type { Team } from "../types/team.types";
@@ -208,41 +209,44 @@ export default function Teams() {
           ) : (
             <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
               {teams.map((team) => (
-                <article
+                <Link
+                  to={`/teams/${team.id}`}
                   key={team.id}
-                  className="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm transition hover:-translate-y-0.5 hover:shadow-md"
+                  className="font-semibold text-slate-900 transition hover:text-indigo-600"
                 >
-                  <div className="flex items-start justify-between gap-3">
-                    <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-indigo-50 text-indigo-600">
-                      <Users size={22} />
+                  <article className="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm transition hover:-translate-y-0.5 hover:shadow-md">
+                    <div className="flex items-start justify-between gap-3">
+                      <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-indigo-50 text-indigo-600">
+                        <Users size={22} />
+                      </div>
+
+                      <span className="rounded-full bg-emerald-50 px-3 py-1 text-xs font-semibold text-emerald-700">
+                        Active
+                      </span>
                     </div>
 
-                    <span className="rounded-full bg-emerald-50 px-3 py-1 text-xs font-semibold text-emerald-700">
-                      Active
-                    </span>
-                  </div>
+                    <h3 className="mt-5 break-words text-lg font-semibold text-slate-900">
+                      {team.name}
+                    </h3>
 
-                  <h3 className="mt-5 break-words text-lg font-semibold text-slate-900">
-                    {team.name}
-                  </h3>
+                    <p className="mt-2 min-h-10 break-words text-sm text-slate-500">
+                      {team.description || "No description provided."}
+                    </p>
 
-                  <p className="mt-2 min-h-10 break-words text-sm text-slate-500">
-                    {team.description || "No description provided."}
-                  </p>
+                    <div className="mt-5 flex items-center gap-5 border-t border-slate-100 pt-4 text-sm text-slate-600">
+                      <span className="flex items-center gap-2">
+                        <Users size={16} />
+                        {team._count?.members ?? team.members?.length ?? 0}{" "}
+                        members
+                      </span>
 
-                  <div className="mt-5 flex items-center gap-5 border-t border-slate-100 pt-4 text-sm text-slate-600">
-                    <span className="flex items-center gap-2">
-                      <Users size={16} />
-                      {team._count?.members ?? team.members?.length ?? 0}{" "}
-                      members
-                    </span>
-
-                    <span className="flex items-center gap-2">
-                      <ClipboardList size={16} />
-                      {team._count?.tasks ?? 0} tasks
-                    </span>
-                  </div>
-                </article>
+                      <span className="flex items-center gap-2">
+                        <ClipboardList size={16} />
+                        {team._count?.tasks ?? 0} tasks
+                      </span>
+                    </div>
+                  </article>
+                </Link>
               ))}
             </div>
           )}

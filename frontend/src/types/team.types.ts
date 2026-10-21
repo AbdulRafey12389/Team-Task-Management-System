@@ -19,6 +19,11 @@ export interface Team {
   createdAt: string;
   updatedAt: string;
   members?: TeamMember[];
+  owner?: {
+    id: string;
+    name: string;
+    email: string;
+  };
   _count?: {
     members: number;
     tasks: number;

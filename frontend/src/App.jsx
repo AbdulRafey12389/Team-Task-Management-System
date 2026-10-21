@@ -7,6 +7,7 @@ import Login from "./pages/Login";
 import Register from "./pages/Register";
 import Dashboard from "./pages/Dashboard";
 import Teams from "./pages/Teams";
+import TeamDetails from "./pages/TeamDetailPage";
 
 export default function App() {
   return (
@@ -21,6 +22,8 @@ export default function App() {
           <Route element={<ProtectedRoute />}>
             <Route path="/dashboard" element={<Dashboard />} />
             <Route path="/teams" element={<Teams />} />
+
+            <Route path="/teams/:teamId" element={<TeamDetails />} />
           </Route>
 
           <Route path="*" element={<Navigate to="/" replace />} />
