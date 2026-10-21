@@ -20,7 +20,7 @@ app.use(morgan("dev"));
 
 app.use(
   cors({
-    origin: config.CLIENT_URL,
+    origin: "http://localhost:5000",
     credentials: true,
   }),
 );
